@@ -1,0 +1,220 @@
+{
+    "_methodology": "Cities selected based on meteorological research of 5 specific climate events that directly affect UP weather. Each city is an early indicator/source for a climate event that reaches UP with a documented lag time.",
+
+    "_climate_events": {
+        "EVENT_1_LOO_HEATWAVE": {
+            "description": "Hot dry 'Loo' winds originate in the Thar Desert and travel west-to-east across the Indo-Gangetic Plain into UP. These cause severe heat waves in May-June.",
+            "source_region": "Thar Desert (western Rajasthan)",
+            "path": "Thar Desert -> Eastern Rajasthan -> Haryana -> Delhi -> Western UP -> Eastern UP",
+            "lead_time": "1-3 days before reaching UP",
+            "sources": ["IMD Heat Wave Bulletins", "Vedantu/ModelDiplomat Loo documentation"]
+        },
+        "EVENT_2_WESTERN_DISTURBANCE": {
+            "description": "Extratropical cyclonic storms from the Mediterranean that bring winter rain and cold waves to UP. They enter India from the northwest through J&K/HP.",
+            "source_region": "Mediterranean Sea / Caspian Sea",
+            "path": "J&K -> Himachal Pradesh -> Punjab/Haryana -> Delhi -> Western UP",
+            "lead_time": "2-4 days before reaching UP plains",
+            "sources": ["IMD WD tracking", "Wikipedia Western Disturbance"]
+        },
+        "EVENT_3_SW_MONSOON": {
+            "description": "Southwest Monsoon provides 85% of UP's annual rainfall. Two branches (Arabian Sea + Bay of Bengal) converge over the Gangetic plain. Onset Kerala June 1 -> UP by late June.",
+            "source_region": "Kerala coast (onset) + Arabian Sea + Bay of Bengal",
+            "path_arabian": "Kerala coast -> Western Ghats -> Central India (Narmada/Tapi valleys) -> Rajasthan -> UP",
+            "path_bengal": "Bay of Bengal -> Odisha/WB coast -> Bihar -> Eastern UP",
+            "lead_time": "30-40 days from Kerala onset to full UP coverage",
+            "key_indicator": "Monsoon trough normal position runs from NW Rajasthan through Prayagraj to Bay of Bengal",
+            "sources": ["IMD Monsoon Dashboard", "PMFIAS.com monsoon documentation"]
+        },
+        "EVENT_4_BAY_DEPRESSION": {
+            "description": "Low pressure depressions/cyclones forming in the Bay of Bengal move west-northwest, bringing heavy rain to eastern UP. These are the primary cause of monsoon rainfall surges.",
+            "source_region": "Bay of Bengal",
+            "path": "Bay of Bengal -> Odisha/WB coast -> Jharkhand -> Bihar -> Eastern UP -> Central UP",
+            "lead_time": "2-4 days from landfall to UP impact",
+            "sources": ["IMD cyclone bulletins", "Skymet Weather"]
+        },
+        "EVENT_5_COLD_WAVE_FOG": {
+            "description": "Cold northwesterly winds combined with Western Disturbance moisture create dense fog blanket across the Indo-Gangetic Plain in winter (Dec-Feb). Affects agriculture and transport.",
+            "source_region": "Higher latitudes + Himalayan region",
+            "path": "Punjab/Haryana -> Delhi -> Western UP -> Central UP -> Eastern UP",
+            "lead_time": "1-2 days, often moves NW to SE across IGP",
+            "sources": ["Drishti IAS Cold Wave analysis", "NASA fog documentation"]
+        }
+    },
+
+    "cities": [
+        {
+            "name": "Bikaner",
+            "state": "Rajasthan",
+            "latitude": 28.0229,
+            "longitude": 73.3119,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_1_LOO_HEATWAVE",
+            "role": "Deep Thar desert — ground zero for Loo wind generation. Heat here = heat wave in UP in 2-3 days."
+        },
+        {
+            "name": "Churu",
+            "state": "Rajasthan",
+            "latitude": 28.3254,
+            "longitude": 74.9681,
+            "total_area_sqkm": 100,
+            "climate_event": "EVENT_1_LOO_HEATWAVE",
+            "role": "India's hottest recorded temperatures. Key heat wave origin point on the Loo wind corridor."
+        },
+        {
+            "name": "Jaipur",
+            "state": "Rajasthan",
+            "latitude": 26.9124,
+            "longitude": 75.7873,
+            "total_area_sqkm": 200,
+            "climate_event": "EVENT_1_LOO_HEATWAVE",
+            "role": "Eastern Rajasthan — Loo transit point. Heat here reaches western UP within 1-2 days."
+        },
+        {
+            "name": "Hisar",
+            "state": "Haryana",
+            "latitude": 29.1492,
+            "longitude": 75.7217,
+            "total_area_sqkm": 100,
+            "climate_event": "EVENT_1_LOO_HEATWAVE",
+            "role": "Haryana arid belt — last major station before Loo winds enter western UP. Also cold wave corridor."
+        },
+        {
+            "name": "New Delhi",
+            "state": "Delhi",
+            "latitude": 28.6139,
+            "longitude": 77.2090,
+            "total_area_sqkm": 200,
+            "climate_event": "EVENT_1_LOO_HEATWAVE",
+            "role": "Immediate UP neighbor. All 5 climate events pass through Delhi before reaching western UP. Universal early indicator."
+        },
+
+        {
+            "name": "Srinagar",
+            "state": "Jammu & Kashmir",
+            "latitude": 34.0837,
+            "longitude": 74.7973,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_2_WESTERN_DISTURBANCE",
+            "role": "First Indian city hit by WDs entering from Mediterranean. Snowfall here = cold wave in UP in 3-4 days."
+        },
+        {
+            "name": "Shimla",
+            "state": "Himachal Pradesh",
+            "latitude": 31.1048,
+            "longitude": 77.1734,
+            "total_area_sqkm": 50,
+            "climate_event": "EVENT_2_WESTERN_DISTURBANCE",
+            "role": "Key WD indicator in western Himalayas. Snow/rain here directly correlates with UP winter rainfall 2-3 days later."
+        },
+        {
+            "name": "Amritsar",
+            "state": "Punjab",
+            "latitude": 31.6340,
+            "longitude": 74.8723,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_2_WESTERN_DISTURBANCE",
+            "role": "Punjab plains — WD reaches here after crossing mountains. Rain here = UP rain in 1-2 days."
+        },
+        {
+            "name": "Chandigarh",
+            "state": "Chandigarh",
+            "latitude": 30.7333,
+            "longitude": 76.7794,
+            "total_area_sqkm": 114,
+            "climate_event": "EVENT_2_WESTERN_DISTURBANCE",
+            "role": "Punjab-Haryana junction — WD and cold wave transit point between mountains and plains."
+        },
+        {
+            "name": "Dehradun",
+            "state": "Uttarakhand",
+            "latitude": 30.3165,
+            "longitude": 78.0322,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_2_WESTERN_DISTURBANCE",
+            "role": "Himalayan foothills directly north of UP. WD precipitation here feeds Ganga-system rivers that affect UP flooding."
+        },
+
+        {
+            "name": "Thiruvananthapuram",
+            "state": "Kerala",
+            "latitude": 8.5241,
+            "longitude": 76.9366,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_3_SW_MONSOON",
+            "role": "Monsoon onset station. IMD declares monsoon onset based on 14 Kerala stations. Onset here = UP monsoon in 30-40 days."
+        },
+        {
+            "name": "Mumbai",
+            "state": "Maharashtra",
+            "latitude": 19.0760,
+            "longitude": 72.8777,
+            "total_area_sqkm": 250,
+            "climate_event": "EVENT_3_SW_MONSOON",
+            "role": "Arabian Sea branch monsoon milestone. Mumbai arrival = monsoon reaches UP in ~15-20 days."
+        },
+        {
+            "name": "Nagpur",
+            "state": "Maharashtra",
+            "latitude": 21.1458,
+            "longitude": 79.0882,
+            "total_area_sqkm": 200,
+            "climate_event": "EVENT_3_SW_MONSOON",
+            "role": "Geographic center of India. Monsoon trough position over Nagpur indicates active rainfall phase for central UP."
+        },
+        {
+            "name": "Bhopal",
+            "state": "Madhya Pradesh",
+            "latitude": 23.2599,
+            "longitude": 77.4126,
+            "total_area_sqkm": 200,
+            "climate_event": "EVENT_3_SW_MONSOON",
+            "role": "Central India — monsoon trough indicator. Heavy rain here precedes UP monsoon surge by 5-7 days."
+        },
+        {
+            "name": "Gwalior",
+            "state": "Madhya Pradesh",
+            "latitude": 26.2183,
+            "longitude": 78.1828,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_3_SW_MONSOON",
+            "role": "Direct south neighbor of UP (Bundelkhand border). Last stop on Arabian Sea monsoon branch before entering UP."
+        },
+
+        {
+            "name": "Bhubaneswar",
+            "state": "Odisha",
+            "latitude": 20.2961,
+            "longitude": 85.8245,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_4_BAY_DEPRESSION",
+            "role": "Cyclone/depression landfall zone. Bay depressions hit Odisha coast first, then move NW into UP in 2-4 days."
+        },
+        {
+            "name": "Kolkata",
+            "state": "West Bengal",
+            "latitude": 22.5726,
+            "longitude": 88.3639,
+            "total_area_sqkm": 200,
+            "climate_event": "EVENT_4_BAY_DEPRESSION",
+            "role": "Bay of Bengal coast — cyclone/depression tracking station. Bay of Bengal branch monsoon enters India here."
+        },
+        {
+            "name": "Ranchi",
+            "state": "Jharkhand",
+            "latitude": 23.3441,
+            "longitude": 85.3096,
+            "total_area_sqkm": 150,
+            "climate_event": "EVENT_4_BAY_DEPRESSION",
+            "role": "Chota Nagpur plateau — Bay depressions cross Jharkhand before reaching eastern UP. Transit indicator."
+        },
+        {
+            "name": "Patna",
+            "state": "Bihar",
+            "latitude": 25.6093,
+            "longitude": 85.1376,
+            "total_area_sqkm": 200,
+            "climate_event": "EVENT_4_BAY_DEPRESSION",
+            "role": "Immediate east neighbor on Ganga plain. Same river system, shared flood dynamics. Bay moisture reaches here before eastern UP."
+        }
+    ]
+}

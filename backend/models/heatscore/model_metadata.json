@@ -1,0 +1,63 @@
+{
+  "metrics": {
+    "train_r2": 0.9923,
+    "test_r2": 0.9771,
+    "test_mae": 0.81,
+    "test_rmse": 1.05,
+    "cv_r2_mean": 0.9761,
+    "cv_r2_std": 0.0067,
+    "cv_scores": [
+      0.9856,
+      0.9828,
+      0.9698,
+      0.9699,
+      0.9723
+    ],
+    "n_features": 19,
+    "n_train": 960,
+    "n_test": 240
+  },
+  "feature_importance": {
+    "lst_night_mean": 0.5937,
+    "lst_day_mean": 0.3923,
+    "humidity_pct": 0.0024,
+    "wind_speed_ms": 0.0019,
+    "viirs_avg_radiance": 0.0017,
+    "elevation_m": 0.0013,
+    "ndvi": 0.0013,
+    "ndwi": 0.0009,
+    "month": 0.0008,
+    "green_cover_ratio": 0.0006,
+    "industrial_heat_factor": 0.0005,
+    "emission_index": 0.0005,
+    "water_cover_ratio": 0.0004,
+    "ndbi": 0.0004,
+    "avg_building_height": 0.0003,
+    "population_density": 0.0003,
+    "built_up_ratio": 0.0003,
+    "ac_thermal_exhaust": 0.0002,
+    "urban_canyon_index": 0.0002
+  },
+  "feature_columns": [
+    "ndvi",
+    "ndwi",
+    "ndbi",
+    "emission_index",
+    "population_density",
+    "built_up_ratio",
+    "green_cover_ratio",
+    "water_cover_ratio",
+    "elevation_m",
+    "month",
+    "humidity_pct",
+    "wind_speed_ms",
+    "avg_building_height",
+    "urban_canyon_index",
+    "industrial_heat_factor",
+    "ac_thermal_exhaust",
+    "lst_day_mean",
+    "lst_night_mean",
+    "viirs_avg_radiance"
+  ],
+  "target_column": "max_temp_c"
+}

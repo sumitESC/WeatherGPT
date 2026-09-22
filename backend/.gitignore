@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.class
+
+# C extensions
+*.so
+
+# Model binaries and weights
+*.pkl
+*.pt
+*.pth
+checkpoints/
+models/checkpoints/
+models/lstm_transformer/checkpoints/
+models/sat_model/checkpoints/
+
+# Heavy processed data and generated output files
+data/processed/
+data/heatzone.db
+data/*.db
+models/predictions/
+models/output/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log

@@ -1,0 +1,126 @@
+================================================================================
+                   WeatherGPT WEATHER REST API ROUTE DIRECTORY
+================================================================================
+Base Production URL:  https://heatzone-backend.onrender.com
+Local Development URL: http://localhost:8000
+API Version:           v1
+OpenAPI Docs:          /docs  |  ReDoc: /redoc  |  Schema: /openapi.json
+================================================================================
+
+--------------------------------------------------------------------------------
+1. SERVER ROOT & DOCUMENTATION
+--------------------------------------------------------------------------------
+
+[GET, HEAD] /
+Summary: Server Health & Root Status
+Description: Returns server health status, service name, version, and endpoints map.
+Responses:
+  - 200 OK: {"status": "online", "service": "WeatherGPT Weather API", "version": "1.0.0", ...}
+
+[GET] /docs
+Summary: Interactive Swagger UI Documentation
+Description: Full interactive API documentation for testing all endpoints in-browser.
+
+[GET] /redoc
+Summary: ReDoc API Specification
+Description: Clean responsive API documentation schema view.
+
+[GET] /openapi.json
+Summary: OpenAPI 3.0 Specification Schema
+Description: Raw JSON OpenAPI schema for client SDK generation.
+
+
+--------------------------------------------------------------------------------
+2. LIVE UPDATES & ALERTS
+--------------------------------------------------------------------------------
+
+[GET] /api/v1/live-update
+[GET] /api/v1/weather/live-update
+Summary: ⚡ Live Updates & Multi-Alert Feed API
+Description: Returns real-time weather updates, dataset refresh status, and all active alerts (Heatwave, Rain, Wind/Loo, Humidity, and Satellite Corridors).
+Parameters:
+  - city (query, optional): Filter alerts for a specific city (e.g., Lucknow, Agra)
+  - alert_type (query, optional): Filter by alert type (HEAT, RAIN, WIND, HUMIDITY, CORRIDOR)
+Responses:
+  - 200 OK: JSON object containing overall alert summary, array of active alerts, and live city updates.
+
+[POST] /api/v1/live-update
+[POST] /api/v1/weather/live-update
+Summary: 🔄 Trigger Manual Background Update
+Description: Starts a background process to fetch latest Open-Meteo weather data and regenerate 16-day AI forecasts.
+Responses:
+  - 200 OK: {"status": "started", "message": "Live update process has been started in the background."}
+
+
+--------------------------------------------------------------------------------
+3. UNIFIED WEATHER & HEAT RISK FORECASTS
+--------------------------------------------------------------------------------
+
+[GET] /api/v1/weather/{city}/current
+Summary: Current Day Weather & Heat Risk Prediction
+Description: Returns the current day's max/min temperature, rainfall, humidity, wind, heat risk score (0-100), risk zone (LOW, MODERATE, HIGH, EXTREME), and primary driver.
+Parameters:
+  - city (path, required): Name of the city (e.g., Lucknow, Prayagraj, Varanasi)
+Responses:
+  - 200 OK: Current day weather & heatscore prediction object.
+  - 404 Not Found: City not found.
+
+[GET] /api/v1/weather/{city}/forecast
+[GET] /api/v1/forecast/{city}
+Summary: 16-Day Unified Ensemble Forecast & Heatscores
+Description: Returns 16-day daily predictions combining XGBoost, Spatiotemporal SAT model, and LSTM-Transformer outputs. Includes heat risk score, confidence bounds, and rain probability.
+Parameters:
+  - city (path, required): Name of the city (e.g., Lucknow, Agra, Kanpur Nagar)
+Responses:
+  - 200 OK: City 16-day forecast object with daily arrays.
+  - 404 Not Found: City not found.
+
+[GET] /api/v1/weather/{city}/previous
+Summary: Historical Weather Record Lookup
+Description: Fetches historical weather record for a city on a specific past date.
+Parameters:
+  - city (path, required): Name of the city
+  - date (query, required): Date in YYYY-MM-DD format
+Responses:
+  - 200 OK: Historical weather record dictionary.
+  - 400 Bad Request: Invalid date format.
+  - 404 Not Found: No record for specified date.
+
+
+--------------------------------------------------------------------------------
+4. HISTORICAL REGIONAL DATA
+--------------------------------------------------------------------------------
+
+[GET] /api/v1/history/{city}
+Summary: Historical Regional Dataset Query
+Description: Fetches historical daily weather records for a city between start_date and end_date.
+Parameters:
+  - city (path, required): City name (e.g., Lucknow)
+  - start_date (query, optional): Start date in YYYY-MM-DD format
+  - end_date (query, optional): End date in YYYY-MM-DD format
+  - limit (query, optional): Max records limit (default: 30)
+Responses:
+  - 200 OK: Array of historical weather records.
+
+
+--------------------------------------------------------------------------------
+5. SATELLITE TELEMETRY & UPSTREAM CORRIDORS
+--------------------------------------------------------------------------------
+
+[GET] /api/v1/context/{city}
+Summary: Sentinel Context Weather & Corridor Signals
+Description: Returns weather telemetry from 19 sentinel context cities (e.g., Bikaner, Jaipur, Srinagar, Mumbai) tracking regional heatwave corridors.
+Parameters:
+  - city (path, required): Target UP city name
+Responses:
+  - 200 OK: Upstream context weather telemetry array.
+
+[GET] /api/v1/sat_model/{city}
+Summary: Spatiotemporal Satellite Telemetry Model Analysis
+Description: Runs Spatiotemporal Cross-Attention analysis combining Sentinel-2 NDVI/NDWI/NDBI indices with weather features.
+Parameters:
+  - city (path, required): City name
+Responses:
+  - 200 OK: Satellite model predictions & corridor analysis object.
+
+================================================================================

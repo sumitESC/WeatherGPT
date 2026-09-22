@@ -1,0 +1,454 @@
+{
+    "cities": [
+        {
+            "name": "Agra",
+            "latitude": 27.1752554,
+            "longitude": 78.0098161,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Aligarh",
+            "latitude": 27.8761073,
+            "longitude": 78.1358153,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Ambedkar Nagar",
+            "latitude": 26.4045941,
+            "longitude": 82.6065154,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Amethi",
+            "latitude": 26.346274,
+            "longitude": 81.6252039,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Amroha",
+            "latitude": 28.7952632,
+            "longitude": 78.3436244,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Auraiya",
+            "latitude": 26.6558215,
+            "longitude": 79.5160757,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Ayodhya",
+            "latitude": 26.7990707,
+            "longitude": 82.2052321,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Azamgarh",
+            "latitude": 26.023639,
+            "longitude": 83.0293105,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Baghpat",
+            "latitude": 29.0374779,
+            "longitude": 77.3062737,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Bahraich",
+            "latitude": 27.7343823,
+            "longitude": 81.47654,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Ballia",
+            "latitude": 25.8749595,
+            "longitude": 84.1210329,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Balrampur",
+            "latitude": 27.4476988,
+            "longitude": 82.3956245,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Banda",
+            "latitude": 25.4438537,
+            "longitude": 80.5595237,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Barabanki",
+            "latitude": 26.9421406,
+            "longitude": 81.3856087,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Bareilly",
+            "latitude": 28.4582345,
+            "longitude": 79.4047452,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Basti",
+            "latitude": 26.8387083,
+            "longitude": 82.5350919,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Bhadohi",
+            "latitude": 25.424304,
+            "longitude": 82.4883923,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Bijnor",
+            "latitude": 29.4074203,
+            "longitude": 78.4821406,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Budaun",
+            "latitude": 28.0367001,
+            "longitude": 79.1234,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Bulandshahr",
+            "latitude": 28.3874073,
+            "longitude": 77.9743805,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Chandauli",
+            "latitude": 25.125695,
+            "longitude": 83.2494601,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Chitrakoot",
+            "latitude": 25.217139,
+            "longitude": 81.1045927,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Deoria",
+            "latitude": 26.4239911,
+            "longitude": 83.7638578,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Etah",
+            "latitude": 27.5550357,
+            "longitude": 78.5992221,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Etawah",
+            "latitude": 26.7155629,
+            "longitude": 79.0917098,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Farrukhabad",
+            "latitude": 27.4362003,
+            "longitude": 79.4894778,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Fatehpur",
+            "latitude": 25.8348023,
+            "longitude": 80.9154547,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Firozabad",
+            "latitude": 27.1941954,
+            "longitude": 78.4604956,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Gautam Buddha Nagar",
+            "latitude": 28.368716,
+            "longitude": 77.5970121,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Ghaziabad",
+            "latitude": 28.7749966,
+            "longitude": 77.4586967,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Ghazipur",
+            "latitude": 25.6034863,
+            "longitude": 83.5075888,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Gonda",
+            "latitude": 27.1103723,
+            "longitude": 81.9238906,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Gorakhpur",
+            "latitude": 26.6677977,
+            "longitude": 83.3642334,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Hamirpur",
+            "latitude": 25.75,
+            "longitude": 80.0,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Hapur",
+            "latitude": 28.7166767,
+            "longitude": 77.890433,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Hardoi",
+            "latitude": 27.3369978,
+            "longitude": 80.0998232,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Hathras",
+            "latitude": 27.5724324,
+            "longitude": 78.1116209,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Jalaun",
+            "latitude": 26.1048633,
+            "longitude": 79.3919136,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Jaunpur",
+            "latitude": 25.7967065,
+            "longitude": 82.4888992,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Jhansi",
+            "latitude": 25.529855,
+            "longitude": 78.6527802,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Kannauj",
+            "latitude": 26.9986675,
+            "longitude": 79.6927946,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Kanpur Dehat",
+            "latitude": 26.4585639,
+            "longitude": 79.8548052,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Kanpur Nagar",
+            "latitude": 26.4410107,
+            "longitude": 80.2652803,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Kasganj",
+            "latitude": 27.7888527,
+            "longitude": 78.8229701,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Kaushambi",
+            "latitude": 25.5342456,
+            "longitude": 81.4493567,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Kheri",
+            "latitude": 28.116667,
+            "longitude": 80.716667,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Kushinagar",
+            "latitude": 26.7438272,
+            "longitude": 83.9162322,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Lalitpur",
+            "latitude": 24.6999688,
+            "longitude": 78.51862,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Lucknow",
+            "latitude": 26.8381,
+            "longitude": 80.9346001,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Maharajganj",
+            "latitude": 26.4710847,
+            "longitude": 81.1807046,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Mahoba",
+            "latitude": 25.3615938,
+            "longitude": 79.706011,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Mainpuri",
+            "latitude": 27.2093072,
+            "longitude": 79.0625369,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Mathura",
+            "latitude": 27.4955539,
+            "longitude": 77.6855554,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Mau",
+            "latitude": 26.0390905,
+            "longitude": 83.4985846,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Meerut",
+            "latitude": 29.0018557,
+            "longitude": 77.7679671,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Mirzapur",
+            "latitude": 24.9316896,
+            "longitude": 82.6280163,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Moradabad",
+            "latitude": 28.8796553,
+            "longitude": 78.8095335,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Muzaffarnagar",
+            "latitude": 29.4496979,
+            "longitude": 77.7429333,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Pilibhit",
+            "latitude": 28.4947158,
+            "longitude": 80.1076122,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Pratapgarh",
+            "latitude": 25.75,
+            "longitude": 81.75,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Prayagraj",
+            "latitude": 25.4381302,
+            "longitude": 81.8338005,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Rae Bareli",
+            "latitude": 26.25,
+            "longitude": 81.25,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Rampur",
+            "latitude": 28.7934728,
+            "longitude": 79.1845806,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Saharanpur",
+            "latitude": 29.9856799,
+            "longitude": 77.5040646,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Sambhal",
+            "latitude": 28.4271928,
+            "longitude": 78.5564546,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Sant Kabir Nagar",
+            "latitude": 26.755082,
+            "longitude": 83.0398545,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Shahjahanpur",
+            "latitude": 27.9128583,
+            "longitude": 79.7476254,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Shamli",
+            "latitude": 29.4811508,
+            "longitude": 77.2901344,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Shravasti",
+            "latitude": 27.5083429,
+            "longitude": 82.0263569,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Siddharthnagar",
+            "latitude": 27.2511724,
+            "longitude": 82.8716528,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Sitapur",
+            "latitude": 27.5026748,
+            "longitude": 80.8335139,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Sonbhadra",
+            "latitude": 24.4148159,
+            "longitude": 83.0637517,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Sultanpur",
+            "latitude": 26.2604732,
+            "longitude": 82.2380532,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Unnao",
+            "latitude": 26.5673264,
+            "longitude": 80.6198193,
+            "total_area_sqkm": 150
+        },
+        {
+            "name": "Varanasi",
+            "latitude": 25.3356491,
+            "longitude": 83.0076292,
+            "total_area_sqkm": 150
+        }
+    ]
+}
