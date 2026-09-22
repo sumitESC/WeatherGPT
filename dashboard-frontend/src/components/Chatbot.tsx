@@ -37,7 +37,6 @@ ChartJS.register(
 );
 
 
-// IMPORTANT: Do not hardcode API keys in source code. Use environment variables or .env files.
 const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || "";
 const API_BASE_URL = "/api";
 
@@ -436,9 +435,6 @@ const ChatWeatherCardWidget = React.memo(function ChatWeatherCardWidget({ target
   );
 });
 
-// ============================================================================
-// ─── NEW WIDGET: MULTI-TABBED FORECAST CHART (Line, Bar, Pie) ───────────────
-// ============================================================================
 
 const ChatForecastChartWidget = React.memo(function ChatForecastChartWidget({ targetId }: { targetId: string }) {
   const [forecast, setForecast] = useState<DailyForecast[]>([]);
@@ -521,7 +517,6 @@ const ChatForecastChartWidget = React.memo(function ChatForecastChartWidget({ ta
 });
 
 // ============================================================================
-// ─── NEW WIDGET: MULTI-CITY COMPARISON CHART ────────────────────────────────
 // ============================================================================
 
 const ChatComparisonWidget = React.memo(function ChatComparisonWidget({ citiesStr }: { citiesStr: string }) {
@@ -587,7 +582,6 @@ const ChatComparisonWidget = React.memo(function ChatComparisonWidget({ citiesSt
 });
 
 // ============================================================================
-// ─── WIDGET: OPENWEATHER MAP ────────────────────────────────────────────────
 // ============================================================================
 const ChatMapWidget = React.memo(function ChatMapWidget({ cityId }: { cityId: string }) {
   const [data, setData] = useState<SynthesizedHeatData | null>(null);
@@ -613,7 +607,6 @@ const ChatMapWidget = React.memo(function ChatMapWidget({ cityId }: { cityId: st
 });
 
 // ============================================================================
-// ─── WIDGET: NASA GIBS MAP ──────────────────────────────────────────────────
 // ============================================================================
 const ChatNasaMapWidget = React.memo(function ChatNasaMapWidget() {
   const targetDate = useMemo(() => { const d = new Date(); d.setDate(d.getDate() - 3); return d.toISOString().split('T')[0]; }, []);
@@ -628,7 +621,6 @@ const ChatNasaMapWidget = React.memo(function ChatNasaMapWidget() {
 });
 
 // ============================================================================
-// ─── NEW WIDGET: AGENT PLANNER CHECKLIST ────────────────────────────────────
 // ============================================================================
 const ChatAgentPlanWidget = React.memo(function ChatAgentPlanWidget({ tasks, completedIds }: { tasks: any[], completedIds: string[] }) {
   if (!tasks || tasks.length === 0) return null;
@@ -662,7 +654,6 @@ const ChatAgentPlanWidget = React.memo(function ChatAgentPlanWidget({ tasks, com
 });
 
 // ============================================================================
-// ─── NEW WIDGET: AI IDENTITY & EXECUTION MODE BADGE ─────────────────────────
 // ============================================================================
 const ChatIdentityBadgeWidget = React.memo(function ChatIdentityBadgeWidget({ name, role, mode }: { name: string; role: string; mode: string }) {
   return (
@@ -688,7 +679,6 @@ const ChatIdentityBadgeWidget = React.memo(function ChatIdentityBadgeWidget({ na
 });
 
 // ============================================================================
-// ─── MESSAGE PARSER ─────────────────────────────────────────────────────────
 // ============================================================================
 function parseMessageContent(content: string): React.ReactNode[] {
   let displayContent = content.replace(/<think>[\s\S]*?(<\/think>|$)/gi, "").trim();
@@ -789,9 +779,7 @@ function parseMessageContent(content: string): React.ReactNode[] {
 }
 
 
-// ============================================================================
-// ─── MESSAGE ROW ────────────────────────────────────────────────────────────
-// ============================================================================
+// TODO: Refactor MessageRow into a separate component file if it gets too large
 const MessageRow = React.memo(({ msg, isStreaming, currentStatus }: { msg: ChatMessage, isStreaming: boolean, currentStatus?: string }) => {
   const cleanContent = msg.content.replace(/<think>[\s\S]*?(<\/think>|$)/gi, "").trim();
   const isEmpty = cleanContent.length === 0;
@@ -829,7 +817,6 @@ const MessageRow = React.memo(({ msg, isStreaming, currentStatus }: { msg: ChatM
 
 
 // ============================================================================
-// ─── MAIN CHATBOT COMPONENT ─────────────────────────────────────────────────
 // ============================================================================
 export function Chatbot({ contextData }: { contextData: any }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);

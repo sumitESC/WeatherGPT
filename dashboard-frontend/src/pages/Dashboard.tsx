@@ -9,7 +9,6 @@ import { format } from "date-fns";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell, PieChart, Pie } from 'recharts';
 import { getHeatZoneHex } from "@/lib/utils";
 
-// React Icons — rich icon pack
 import { WiThermometer, WiHumidity, WiStrongWind, WiBarometer } from "react-icons/wi";
 import { FaCity, FaLeaf, FaCarSide, FaBuilding, FaShieldAlt, FaChartPie } from "react-icons/fa";
 import { MdSatelliteAlt, MdFactory, MdLandscape, MdSpeed } from "react-icons/md";

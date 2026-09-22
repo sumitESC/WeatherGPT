@@ -7,7 +7,6 @@ import { getHeatZoneHex } from "@/lib/utils";
 import { Loader2, ArrowRight, Satellite, Map as MapIcon, ExternalLink, Thermometer, Construction, TreePine, Droplet, Globe, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 
-// MUST IMPORT LEAFLET CSS for the map to be visible
 import "leaflet/dist/leaflet.css";
 
 function MapController() {

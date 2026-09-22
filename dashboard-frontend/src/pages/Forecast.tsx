@@ -37,7 +37,6 @@ interface CityForecast {
   forecast: ForecastDay[];
 }
 
-// ─── Intelligent Weather Condition Derivation ─────────────────────────────
 interface DerivedWeather {
   main: string;
   description: string;
@@ -312,7 +311,6 @@ export default function Forecast() {
         }
       } catch (err: any) {
         console.error("Forecast fetch error:", err);
-        // Fallback simulation on network error
         setRawUnifiedData({
           city: "Lucknow",
           forecast: Array.from({ length: 16 }, (_, i) => {

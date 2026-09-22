@@ -75,7 +75,6 @@ async function mlFetch<T>(path: string): Promise<T | null> {
   }
 }
 
-// ─── ML Forecast cache (5 min TTL) ──────────────────────────────────────────
 const mlForecastCache = new Map<string, { data: MLForecastResponse; ts: number }>();
 const ML_FORECAST_CACHE_TTL = 300_000; // 5 minutes
 

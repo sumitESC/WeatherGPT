@@ -104,34 +104,26 @@ async function handleResponse<T>(res: Response, endpointName: string): Promise<T
   return res.json() as Promise<T>;
 }
 
-/**
- * 1. GET / - Root API status and health check
- */
+// GET / - Root API status and health check
 export async function fetchRootStatus(): Promise<RootStatusResponse> {
   const res = await fetch(`${RENDER_BACKEND_URL}/`);
   return handleResponse<RootStatusResponse>(res, 'fetchRootStatus');
 }
 
-/**
- * 2. GET /api/v1/forecast/{city} - 16-Day AI Forecast + ML Heatwave Risk
- */
+// GET /api/v1/forecast/{city} - 16-Day AI Forecast + ML Heatwave Risk
 export async function fetchCityForecast(city: string): Promise<CityForecastResponse> {
   const res = await fetch(`${RENDER_BACKEND_URL}/api/v1/forecast/${encodeURIComponent(city)}`);
   return handleResponse<CityForecastResponse>(res, `fetchCityForecast(${city})`);
 }
 
-/**
- * 3. GET /api/v1/sat_model/{city}?horizon={hours} - Full Satellite Telemetry Analysis
- */
+// GET /api/v1/sat_model/{city}?horizon={hours} - Full Satellite Telemetry Analysis
 export async function fetchSatModelAnalysis(city: string, horizon: number = 72): Promise<SatModelAnalysisResponse> {
   const url = `${RENDER_BACKEND_URL}/api/v1/sat_model/${encodeURIComponent(city)}?horizon=${horizon}`;
   const res = await fetch(url);
   return handleResponse<SatModelAnalysisResponse>(res, `fetchSatModelAnalysis(${city})`);
 }
 
-/**
- * 4. GET /api/v1/sat_model/{city}/report - Markdown Report Output
- */
+// GET /api/v1/sat_model/{city}/report - Markdown Report Output
 export async function fetchSatModelReport(city: string): Promise<string> {
   const url = `${RENDER_BACKEND_URL}/api/v1/sat_model/${encodeURIComponent(city)}/report`;
   const res = await fetch(url);
@@ -141,36 +133,28 @@ export async function fetchSatModelReport(city: string): Promise<string> {
   return res.text();
 }
 
-/**
- * 5. GET /api/v1/weather/{city}/current - Today's Current Weather & Heat Risk
- */
+// GET /api/v1/weather/{city}/current - Today's Current Weather & Heat Risk
 export async function fetchCurrentWeather(city: string): Promise<CurrentWeatherResponse> {
   const url = `${RENDER_BACKEND_URL}/api/v1/weather/${encodeURIComponent(city)}/current`;
   const res = await fetch(url);
   return handleResponse<CurrentWeatherResponse>(res, `fetchCurrentWeather(${city})`);
 }
 
-/**
- * 6. GET /api/v1/weather/{city}/forecast - 16-Day Unified Weather Forecast & Heat Risk
- */
+// GET /api/v1/weather/{city}/forecast - 16-Day Unified Weather Forecast & Heat Risk
 export async function fetchUnifiedWeatherForecast(city: string): Promise<CityForecastResponse> {
   const url = `${RENDER_BACKEND_URL}/api/v1/weather/${encodeURIComponent(city)}/forecast`;
   const res = await fetch(url);
   return handleResponse<CityForecastResponse>(res, `fetchUnifiedWeatherForecast(${city})`);
 }
 
-/**
- * 7. GET /api/v1/weather/{city}/previous?date=YYYY-MM-DD - Previous Day Weather Record
- */
+// GET /api/v1/weather/{city}/previous?date=YYYY-MM-DD - Previous Day Weather Record
 export async function fetchPreviousDayWeather(city: string, date: string): Promise<CurrentWeatherResponse> {
   const url = `${RENDER_BACKEND_URL}/api/v1/weather/${encodeURIComponent(city)}/previous?date=${date}`;
   const res = await fetch(url);
   return handleResponse<CurrentWeatherResponse>(res, `fetchPreviousDayWeather(${city}, ${date})`);
 }
 
-/**
- * 8. GET /api/v1/history/{city}?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD - Historical Weather Records
- */
+// GET /api/v1/history/{city}?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD - Historical Weather Records
 export async function fetchHistoryRecords(city: string, startDate?: string, endDate?: string): Promise<HistoryResponse> {
   let url = `${RENDER_BACKEND_URL}/api/v1/history/${encodeURIComponent(city)}`;
   const params = new URLSearchParams();
@@ -183,9 +167,7 @@ export async function fetchHistoryRecords(city: string, startDate?: string, endD
   return handleResponse<HistoryResponse>(res, `fetchHistoryRecords(${city})`);
 }
 
-/**
- * 9. GET /api/v1/context/india?date=YYYY-MM-DD - Upstream India Sentinel Climate Signals
- */
+// GET /api/v1/context/india?date=YYYY-MM-DD - Upstream India Sentinel Climate Signals
 export async function fetchIndiaSentinelContext(date?: string): Promise<IndiaSentinelContextResponse> {
   let url = `${RENDER_BACKEND_URL}/api/v1/context/india`;
   if (date) {
@@ -250,9 +232,7 @@ export interface LiveUpdateResponse {
   };
 }
 
-/**
- * 10. GET /api/v1/weather/live-update - Real-Time Live Weather & Multi-Alert Stream (Heat, Rain, Wind, Humidity, Corridors)
- */
+// GET /api/v1/weather/live-update - Real-Time Live Weather & Multi-Alert Stream (Heat, Rain, Wind, Humidity, Corridors)
 export async function fetchLiveUpdates(city?: string, alertType?: string): Promise<LiveUpdateResponse> {
   const params = new URLSearchParams();
   if (city) params.append('city', city);
@@ -263,9 +243,7 @@ export async function fetchLiveUpdates(city?: string, alertType?: string): Promi
   return handleResponse<LiveUpdateResponse>(res, 'fetchLiveUpdates');
 }
 
-/**
- * 11. POST /api/v1/weather/live-update - Trigger manual live data refresh in background
- */
+// POST /api/v1/weather/live-update - Trigger manual live data refresh in background
 export async function triggerLiveUpdate(): Promise<{ status: string; timestamp: string; message: string }> {
   const url = `${RENDER_BACKEND_URL}/api/v1/weather/live-update`;
   const res = await fetch(url, { method: 'POST' });
