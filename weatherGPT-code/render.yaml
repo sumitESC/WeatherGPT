@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: weathergpt
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --workers 1"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: VITE_GROQ_API_KEY
+        sync: false
+      - key: VITE_GROQ_MODEL
+        value: "openai/gpt-oss-120b"
+      - key: HEATZONE_BASE_URL
+        value: "https://heatzone-backend.onrender.com"
+      - key: WHATSAPP_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        sync: false
+      - key: WHATSAPP_VERIFY_TOKEN
+        value: "weathergpt_verify_secret"

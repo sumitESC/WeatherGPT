@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/* Base Layout Settings */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Prevent iOS Safari text-input auto-zoom & page shift */
+@media screen and (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+@keyframes coin-flip {
+  0% {
+    transform: perspective(400px) rotateY(0deg);
+    background-color: #09090b; /* zinc-950 */
+  }
+  50% {
+    transform: perspective(400px) rotateY(180deg);
+    background-color: #3b82f6; /* blue-500 */
+  }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+    background-color: #09090b; /* zinc-950 */
+  }
+}
+
+.animate-coin-flip {
+  animation: coin-flip 3s infinite ease-in-out;
+  transform-style: preserve-3d;
+}
+
+@keyframes flip-icon {
+  0% {
+    transform: perspective(400px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(400px) rotateY(180deg);
+    color: #3b82f6; /* turn blue */
+  }
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+  }
+}
+
+.animate-flip-icon {
+  animation: flip-icon 3s infinite ease-in-out;
+  transform-style: preserve-3d;
+}

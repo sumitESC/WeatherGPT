@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microphone Test Utility</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            padding: 2rem; 
+            max-width: 600px; 
+            margin: auto; 
+            background: #fafafa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+        }
+        #startBtn { background: #10b981; }
+        #startBtn:hover { background: #059669; }
+        #startBtn:disabled { background: #a7f3d0; cursor: not-allowed; }
+        #stopBtn { background: #ef4444; margin-left: 10px; }
+        #stopBtn:hover { background: #dc2626; }
+        #stopBtn:disabled { background: #fca5a5; cursor: not-allowed; }
+        
+        .status-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background: #f3f4f6;
+            border-left: 4px solid #6b7280;
+        }
+        #status { font-weight: bold; font-size: 18px; }
+        #error { color: #ef4444; margin-top: 10px; font-weight: bold; }
+        
+        .transcript-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            min-height: 80px;
+            font-size: 18px;
+        }
+        .interim { color: #64748b; font-style: italic; }
+        .final { color: #0f172a; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎤 Microphone & Speech Recognition Test</h2>
+        <p>Click <strong>Start</strong> and speak to see if your browser is successfully picking up your voice.</p>
+        
+        <div>
+            <button id="startBtn">Start Microphone</button>
+            <button id="stopBtn" disabled>Stop</button>
+        </div>
+        
+        <div class="status-box">
+            <div id="status">Status: Idle</div>
+            <div id="error"></div>
+        </div>
+        
+        <h3>Live Transcript:</h3>
+        <div class="transcript-box" id="transcript">Waiting for speech...</div>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const statusDiv = document.getElementById('status');
+        const transcriptDiv = document.getElementById('transcript');
+        const errorDiv = document.getElementById('error');
+
+        let recognition;
+        let finalTranscriptAccumulated = '';
+
+        if (!('SpeechRecognition' in window) && !('webkitSpeechRecognition' in window)) {
+            errorDiv.innerText = "🚨 Error: Speech Recognition API is not supported in this browser. Please use Google Chrome, Microsoft Edge, or Brave.";
+            startBtn.disabled = true;
+        } else {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = navigator.language || 'en-US';
+
+            recognition.onstart = () => {
+                statusDiv.innerText = "Status: 🔴 Listening... (Please speak now)";
+                errorDiv.innerText = "";
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                finalTranscriptAccumulated = '';
+                transcriptDiv.innerHTML = '<span class="interim">Listening...</span>';
+            };
+
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                let newFinalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        newFinalTranscript += event.results[i][0].transcript;
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+
+                if (newFinalTranscript) {
+                    finalTranscriptAccumulated += newFinalTranscript + ' ';
+                }
+
+                transcriptDiv.innerHTML = 
+                    `<span class="final">${finalTranscriptAccumulated}</span>` + 
+                    `<span class="interim">${interimTranscript}</span>`;
+            };
+
+            recognition.onerror = (event) => {
+                statusDiv.innerText = "Status: ❌ Error occurred";
+                
+                if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+                    errorDiv.innerText = "🚨 Error: Microphone access was denied! Please check the lock/microphone icon in your URL bar and allow permissions.";
+                } else if (event.error === 'audio-capture') {
+                    errorDiv.innerText = "🚨 Error: No microphone was found by the browser. Please check your Windows Sound settings.";
+                } else {
+                    errorDiv.innerText = `🚨 Error: ${event.error}`;
+                }
+                
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            };
+
+            recognition.onend = () => {
+                statusDiv.innerText = "Status: ⏹️ Stopped listening.";
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            };
+
+            startBtn.addEventListener('click', () => {
+                try {
+                    recognition.start();
+                } catch (e) {
+                    errorDiv.innerText = "🚨 Failed to start recognition. It might already be running.";
+                }
+            });
+
+            stopBtn.addEventListener('click', () => {
+                recognition.stop();
+            });
+        }
+    </script>
+</body>
+</html>
