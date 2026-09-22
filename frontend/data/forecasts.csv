@@ -1,0 +1,6 @@
+City,Date,TempMin,TempMax,TempAvg,FeelsLike,Humidity,WindSpeed,Pressure,CloudCover,Rainfall,Weather
+Lucknow,2026-03-17,27.7,34.7,30.7,32.7,76,7.2,1003,26,7.9,Rain
+Lucknow,2026-03-18,27.4,34.4,30.4,32.4,83,5.3,1007,52,0,Mist
+Lucknow,2026-03-19,30.9,37.9,33.9,35.9,74,5.1,1015,20,0,Clouds
+Lucknow,2026-03-20,30.5,37.5,33.5,35.5,61,4.2,1002,25,0,Mist
+Lucknow,2026-03-21,26.7,33.7,29.7,31.7,60,4.3,1003,54,0,Clouds

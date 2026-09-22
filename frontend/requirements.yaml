@@ -1,0 +1,22 @@
+packages:
+  "framer-motion": "For smooth layout animations and entry transitions"
+  "recharts": "For advanced data visualization and dashboard charts"
+  "react-leaflet": "For the interactive urban heat zone map"
+  "leaflet": "Core map library required by react-leaflet"
+  "@types/leaflet": "Type definitions for leaflet"
+  "date-fns": "For formatting weather and historical dates"
+  "clsx": "Utility for constructing className strings"
+  "tailwind-merge": "Utility for merging tailwind classes safely"
+
+images:
+  - path: "artifacts/WeatherGPT/public/images/logo-mark.png"
+    description: "A sleek, abstract geometric logo mark representing a heatwave or a stylized letter H, in vibrant orange and red gradients, transparent background"
+    aspect_ratio: "1:1"
+  - path: "artifacts/WeatherGPT/public/images/bg-glow.png"
+    description: "Abstract very dark navy background with a soft, glowing deep orange and red gradient mesh radiating softly, high tech data dashboard aesthetic"
+    aspect_ratio: "16:9"
+
+notes:
+  - Using @workspace/api-client-react for all data hooks as per implementation notes
+  - Using CircleMarkers in Leaflet to avoid Vite asset path issues with default marker PNGs
+  - Defaulting to a dark theme tailored for data visualization with deep navy and charcoal

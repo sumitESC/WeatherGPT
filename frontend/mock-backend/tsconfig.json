@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": false,
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@workspace/db": ["../database/src/index.ts"],
+      "@workspace/api-zod": ["../api-zod/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*"]
+}

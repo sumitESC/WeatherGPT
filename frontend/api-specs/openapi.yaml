@@ -1,0 +1,580 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: WeatherGPT – Uttar Pradesh Urban Heat Intelligence System API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: cities
+    description: City data operations
+  - name: weather
+    description: Weather data operations
+  - name: heatzone
+    description: Heat zone predictions and analysis
+  - name: recommendations
+    description: AI recommendation engine
+  - name: datasets
+    description: City dataset operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /cities:
+    get:
+      operationId: getCities
+      tags: [cities]
+      summary: Get all cities
+      description: Returns list of all monitored cities in Uttar Pradesh
+      responses:
+        "200":
+          description: List of cities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/City"
+
+  /cities/{cityId}:
+    get:
+      operationId: getCityById
+      tags: [cities]
+      summary: Get city by ID
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: City details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/City"
+        "404":
+          description: City not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /weather/current/{cityId}:
+    get:
+      operationId: getCurrentWeather
+      tags: [weather]
+      summary: Get current weather for a city
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Current weather data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WeatherData"
+        "404":
+          description: City not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /weather/history/{cityId}:
+    get:
+      operationId: getWeatherHistory
+      tags: [weather]
+      summary: Get weather history for a city
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Weather history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WeatherData"
+
+  /weather/refresh:
+    post:
+      operationId: refreshWeatherData
+      tags: [weather]
+      summary: Refresh weather data for all cities
+      responses:
+        "200":
+          description: Refresh result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RefreshResult"
+
+  /heatzone/predict/{cityId}:
+    get:
+      operationId: getHeatPrediction
+      tags: [heatzone]
+      summary: Get heat risk prediction for a city
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Heat prediction result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HeatPrediction"
+        "404":
+          description: City not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /heatzone/all:
+    get:
+      operationId: getAllHeatPredictions
+      tags: [heatzone]
+      summary: Get heat predictions for all cities
+      responses:
+        "200":
+          description: Heat predictions for all cities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HeatPrediction"
+
+  /heatzone/history/{cityId}:
+    get:
+      operationId: getHeatHistory
+      tags: [heatzone]
+      summary: Get heat prediction history for a city
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Heat history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HeatPrediction"
+
+  /recommendations/{cityId}:
+    get:
+      operationId: getRecommendations
+      tags: [recommendations]
+      summary: Get AI recommendations for a city
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: AI recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Recommendation"
+        "404":
+          description: City not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /datasets/city/{cityId}:
+    get:
+      operationId: getCityDataset
+      tags: [datasets]
+      summary: Get full dataset for a city
+      parameters:
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: City dataset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CityDataset"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /datasets/overview:
+    get:
+      operationId: getDashboardOverview
+      tags: [datasets]
+      summary: Get dashboard overview statistics
+      responses:
+        "200":
+          description: Dashboard overview
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardOverview"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    City:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        population:
+          type: integer
+        populationDensity:
+          type: number
+        totalArea:
+          type: number
+        builtUpArea:
+          type: number
+        industrialArea:
+          type: number
+        residentialArea:
+          type: number
+        roadArea:
+          type: number
+        openLand:
+          type: number
+        forestCover:
+          type: number
+        urbanGreenSpace:
+          type: number
+        treeDensity:
+          type: number
+        ndvi:
+          type: number
+        totalVehicles:
+          type: integer
+        petrolVehicles:
+          type: integer
+        dieselVehicles:
+          type: integer
+        electricVehicles:
+          type: integer
+        cngVehicles:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - name
+        - latitude
+        - longitude
+        - population
+        - populationDensity
+        - totalArea
+        - builtUpArea
+        - industrialArea
+        - residentialArea
+        - roadArea
+        - openLand
+        - forestCover
+        - urbanGreenSpace
+        - treeDensity
+        - ndvi
+        - totalVehicles
+        - petrolVehicles
+        - dieselVehicles
+        - electricVehicles
+        - cngVehicles
+        - createdAt
+        - updatedAt
+
+    WeatherData:
+      type: object
+      properties:
+        id:
+          type: integer
+        cityId:
+          type: integer
+        cityName:
+          type: string
+        temperature:
+          type: number
+        feelsLike:
+          type: number
+        humidity:
+          type: integer
+        windSpeed:
+          type: number
+        pressure:
+          type: integer
+        cloudCover:
+          type: integer
+        rainfall:
+          type: number
+        uvIndex:
+          type: ["number", "null"]
+        weatherMain:
+          type: string
+        weatherDescription:
+          type: string
+        recordedAt:
+          type: string
+      required:
+        - id
+        - cityId
+        - cityName
+        - temperature
+        - feelsLike
+        - humidity
+        - windSpeed
+        - pressure
+        - cloudCover
+        - rainfall
+        - weatherMain
+        - weatherDescription
+        - recordedAt
+
+    HeatPrediction:
+      type: object
+      properties:
+        id:
+          type: integer
+        cityId:
+          type: integer
+        cityName:
+          type: string
+        heatRiskScore:
+          type: number
+        heatZone:
+          type: string
+          enum: [cool, moderate, high, extreme]
+        temperature:
+          type: number
+        humidity:
+          type: integer
+        vehicleDensity:
+          type: number
+        populationDensity:
+          type: number
+        greenCoverRatio:
+          type: number
+        builtUpRatio:
+          type: number
+        coolingIndex:
+          type: number
+        trafficHeatFactor:
+          type: number
+        latitude:
+          type: number
+        longitude:
+          type: number
+        predictedAt:
+          type: string
+      required:
+        - id
+        - cityId
+        - cityName
+        - heatRiskScore
+        - heatZone
+        - temperature
+        - humidity
+        - vehicleDensity
+        - populationDensity
+        - greenCoverRatio
+        - builtUpRatio
+        - coolingIndex
+        - trafficHeatFactor
+        - latitude
+        - longitude
+        - predictedAt
+
+    Recommendation:
+      type: object
+      properties:
+        id:
+          type: integer
+        cityId:
+          type: integer
+        category:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [low, medium, high, critical]
+        impact:
+          type: string
+        icon:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - cityId
+        - category
+        - title
+        - description
+        - priority
+        - impact
+        - icon
+        - createdAt
+
+    CityDataset:
+      type: object
+      properties:
+        city:
+          $ref: "#/components/schemas/City"
+        latestWeather:
+          $ref: "#/components/schemas/WeatherData"
+        latestPrediction:
+          $ref: "#/components/schemas/HeatPrediction"
+        recommendations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Recommendation"
+        weatherHistory:
+          type: array
+          items:
+            $ref: "#/components/schemas/WeatherData"
+        heatHistory:
+          type: array
+          items:
+            $ref: "#/components/schemas/HeatPrediction"
+      required:
+        - city
+        - recommendations
+        - weatherHistory
+        - heatHistory
+
+    DashboardOverview:
+      type: object
+      properties:
+        totalCities:
+          type: integer
+        avgHeatRisk:
+          type: number
+        extremeHeatCities:
+          type: integer
+        highHeatCities:
+          type: integer
+        moderateHeatCities:
+          type: integer
+        coolCities:
+          type: integer
+        avgTemperature:
+          type: number
+        avgHumidity:
+          type: number
+        totalVehicles:
+          type: integer
+        avgGreenCover:
+          type: number
+        lastUpdated:
+          type: string
+        cityPredictions:
+          type: array
+          items:
+            $ref: "#/components/schemas/HeatPrediction"
+      required:
+        - totalCities
+        - avgHeatRisk
+        - extremeHeatCities
+        - highHeatCities
+        - moderateHeatCities
+        - coolCities
+        - avgTemperature
+        - avgHumidity
+        - totalVehicles
+        - avgGreenCover
+        - lastUpdated
+        - cityPredictions
+
+    RefreshResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        citiesUpdated:
+          type: integer
+        message:
+          type: string
+      required:
+        - success
+        - citiesUpdated
+        - message
