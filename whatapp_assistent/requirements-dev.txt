@@ -1,0 +1,5 @@
+-r requirements.txt
+uvicorn>=0.22.0
+requests>=2.28.0
+httpx>=0.25.0
+gunicorn>=21.2.0

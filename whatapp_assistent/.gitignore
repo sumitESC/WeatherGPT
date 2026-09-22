@@ -1,0 +1,41 @@
+# Environment variables and sensitive keys
+.env
+.env.local
+.env.*.local
+*.env
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Testing & Logs
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Build & packaging
+*.egg-info/
+.venv/
+dist/
+build/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.dev.vars
+
+# IDE and System files
+.DS_Store
+.idea/
+.vscode/
+
+

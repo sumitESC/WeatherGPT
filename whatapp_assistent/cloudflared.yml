@@ -1,0 +1,25 @@
+# ============================================================
+# Cloudflare Tunnel Configuration - WeatherGPT WhatsApp Assistant
+# ============================================================
+# Connects the containerized or hosted FastAPI server securely
+# to Cloudflare Edge with automated HTTPS and DDoS protection.
+#
+# Steps to use:
+#   1. Install cloudflared CLI: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/install-and-setup/tunnel-guide/
+#   2. Authenticate: cloudflared tunnel login
+#   3. Create tunnel: cloudflared tunnel create weathergpt-whatsapp
+#   4. Replace TUNNEL_ID below and run: cloudflared tunnel run weathergpt-whatsapp
+# ============================================================
+
+tunnel: YOUR_CLOUDFLARE_TUNNEL_ID
+credentials-file: /etc/cloudflared/YOUR_CLOUDFLARE_TUNNEL_ID.json
+
+ingress:
+  - hostname: whatsapp.yourdomain.com
+    service: http://whatsapp-assistant:8001
+    originRequest:
+      connectTimeout: 10s
+      noTLSVerify: true
+
+  # Default Catch-all rule
+  - service: http_status:404

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["main", "config", "worker", "weather_service", "agent_service", "run_whatsapp", "test_assistant"]
+
+[project]
+name = "whatapp-assistent"
+version = "2.0.0"
+description = "WeatherGPT Professional WhatsApp Assistant Webhook for Cloudflare Workers"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.100.0",
+    "python-dotenv>=1.0.0",
+    "python-multipart>=0.0.6",
+]
+
+[dependency-groups]
+dev = [
+    "workers-py",
+    "workers-runtime-sdk",
+    "uvicorn>=0.22.0",
+    "httpx>=0.25.0",
+    "requests>=2.28.0",
+]

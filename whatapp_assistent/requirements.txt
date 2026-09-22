@@ -1,0 +1,1 @@
+# Pure Python Cloudflare Worker - Zero external C-extension dependencies required

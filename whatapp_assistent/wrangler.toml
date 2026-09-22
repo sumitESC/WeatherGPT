@@ -1,0 +1,27 @@
+# ============================================================
+# Cloudflare Workers Configuration - WeatherGPT WhatsApp Assistant (TypeScript / Hono)
+# ============================================================
+name = "whatapp-assistent"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+
+[vars]
+ENVIRONMENT = "production"
+CLOUDFLARE_WORKER = "true"
+WHATSAPP_VERIFY_TOKEN = "weathergpt_verify_secret"
+VITE_GROQ_MODEL = "openai/gpt-oss-120b"
+ADMIN_USERNAME = "admin"
+
+# Cloudflare KV Storage for Chat History, Summaries, and Analytics
+[[kv_namespaces]]
+binding = "CHAT_KV"
+id = "ef7fabb1bc21475caf65eff581749427"
+
+# Secrets to configure in Cloudflare Dashboard or via Wrangler CLI:
+#   npx wrangler secret put OPENWEATHER_API_KEY
+#   npx wrangler secret put VITE_GROQ_API_KEY
+#   npx wrangler secret put WHATSAPP_TOKEN
+#   npx wrangler secret put WHATSAPP_PHONE_NUMBER_ID
+#   npx wrangler secret put META_APP_SECRET
+#   npx wrangler secret put ADMIN_PASSWORD
+#   npx wrangler secret put ADMIN_SECRET_KEY
