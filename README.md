@@ -89,34 +89,39 @@ This 2-layer separation ensures the language model acts *only* as a formatter an
 
 ### Architectural Flow Diagram
 
-```text
-User (Web Dashboard / WhatsApp Voice Interface / Web Speech API)
-  │
-  ▼
-[ LAYER 1: SENSE PIPELINE ]
-  │
-  ├─► Intent Classification (JSON-constrained LLM)
-  ├─► Entity Extraction (City, Date, Coordinates)
-  ├─► Temporal Resolution (Mapping "tomorrow" to ISO 8601)
-  └─► Ambiguity Detection (Prompting user if context is missing)
-  │
-  ▼
-[ DETERMINISTIC RETRIEVAL & INTELLIGENCE ] (heatzone-backend)
-  │
-  ├─► Live Weather APIs (Open-Meteo)
-  ├─► Static Satellite Features (Sentinel-2 NDVI / NDWI / NDBI)
-  ├─► Heat Risk ML Analytics (Random Forest)
-  └─► Forecast Engine (Temporal Fusion Transformer - 720 hours)
-  │
-  ▼
-[ LAYER 2: ACT PIPELINE (GENERATION) ]
-  │
-  ├─► System Prompt Injection (Strict formatting rules)
-  ├─► Verified Numerical Context Injection (Raw CSV/JSON arrays)
-  └─► Grounded Natural-Language Generation (Hindi, Bengali, English)
-  │
-  ▼
-User / Edge Broadcasting
+```mermaid
+graph TD
+    User(["User (Web Dashboard / WhatsApp / Voice)"])
+    
+    subgraph Layer1 ["Layer 1: Sense Pipeline"]
+        direction LR
+        Intent["Intent Classification"]
+        Entity["Entity Extraction"]
+        Temporal["Temporal Resolution"]
+    end
+    
+    subgraph Backend ["Deterministic Retrieval & Intelligence"]
+        direction LR
+        APIs["Live Weather APIs"]
+        Sat["Satellite Features"]
+        TFT["Temporal Fusion Transformer"]
+    end
+    
+    subgraph Layer2 ["Layer 2: Act Pipeline (Generation)"]
+        direction LR
+        Prompt["Prompt Injection"]
+        Context["Numerical Context Injection"]
+        Gen["Grounded NLG"]
+    end
+
+    User --> Layer1
+    Layer1 --> Backend
+    Backend --> Layer2
+    Layer2 --> Broadcast(["User / Mass Edge Broadcasting"])
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
+    classDef layer fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
+    class Layer1,Layer2 layer;
 ```
 
 ## 4.3 Deterministic Validation in Layer 1
