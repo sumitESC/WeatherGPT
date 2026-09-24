@@ -489,3 +489,13 @@ timestamp,pred_temperature_2m,pred_precipitation,heat_risk_score,uv_index
 ... [371 hourly predictions omitted] ...
 2026-09-30 23:00:00,29.74,0.34,45.2,0.0
 ```
+
+---
+
+# 16. Author & Contact Information
+
+For academic inquiries, data access, or technical collaboration regarding the WeatherGPT project, please contact:
+
+**Sumit Kushwaha**
+- **Email**: [iamkussumit@gmail.com](mailto:iamkussumit@gmail.com)
+- **Contact**: +91 9616550356
