@@ -272,6 +272,47 @@ The master GitHub monorepo is organized to physically isolate the distinct micro
 - **`/weatherGPT-code`**: The core ML training loop, data pipeline scripts, and legacy core modules (AI detection free).
 - **`/whatapp_assistent`**: The edge deployment scripts (Node.js/Cloudflare Workers) that route WhatsApp webhooks into the backend (AI detection free).
 
+## 7.5 Local Setup & Installation
+
+To run the full WeatherGPT stack locally:
+
+**1. Clone & Setup Backend:**
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+**2. Configure Environment Keys:**
+Create a `.env` file in both `/backend` and `/dashboard-frontend` with the necessary keys:
+```env
+OPENWEATHER_API_KEY=your_api_key
+OPENROUTER_API_KEY=your_llm_key
+LLM_API_KEY=your_LLM_key
+```
+
+**3. Run Servers:**
+```bash
+# Terminal 1: Backend
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+# Terminal 2: Frontend
+cd dashboard-frontend
+npm install && npm run dev
+```
+
+## 7.6 Error Handling & API Rate Limits
+To ensure robust production uptime, the system employs aggressive fallback mechanisms:
+- **Rate Limit Tripping**: If OpenWeather API rate limits are hit, the system automatically falls back to deterministic historical averages from the local SQLite/Parquet database.
+- **Model Downtime**: If the primary LLaMA 3.3 model via OpenRouter experiences downtime, the system dynamically fails over to a secondary Groq-hosted Mixtral model to prevent dropped webhooks.
+- **Exceptions**: All data pipelines use standard exponential backoff retries.
+
+## 7.7 Testing & CI/CD Workflows
+The repository leverages automated workflows to maintain code quality:
+- **Unit Testing**: Contains PyTest suites for validating the data ingestion logic, ensuring NaN values and schema shifts are caught before database writes.
+- **GitHub Actions**: Configured to run automated linting (Flake8 for Python, ESLint for TypeScript) and integration tests on every Pull Request to the `main` branch.
+
 ---
 
 # 8. Experimental Setup
