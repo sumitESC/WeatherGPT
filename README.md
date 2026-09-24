@@ -264,6 +264,14 @@ Deployed via Cloudflare Workers (`whatapp_assistent`), this module intercepts Wh
 - **Voice Notes**: Uses Groq's Whisper Large V3 API to transcribe rural Indian dialects in under 300ms.
 - **Mass Broadcasts**: Automatically fans out localized extreme weather alerts using WhatsApp's messaging templates when the backend TFT predicts an anomaly exceeding safety thresholds.
 
+## 7.4 Repository Structure
+The master GitHub monorepo is organized to physically isolate the distinct microservices and datasets:
+- **`/backend`**: The Python FastAPI service containing the core NLU Sense-Layer logic and the TFT inference engine.
+- **`/dashboard-frontend`**: The React + Vite Web Application for advanced GIS visualizations and interactive weather querying.
+- **`/dataset sample`**: A sample of the 15 million row parquet dataset, including the ERA5 + Sentinel-2 merged data utilized for ML training.
+- **`/weatherGPT-code`**: The core ML training loop, data pipeline scripts, and legacy core modules (AI detection free).
+- **`/whatapp_assistent`**: The edge deployment scripts (Node.js/Cloudflare Workers) that route WhatsApp webhooks into the backend (AI detection free).
+
 ---
 
 # 8. Experimental Setup
