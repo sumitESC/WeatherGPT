@@ -157,6 +157,8 @@ To train the Temporal Fusion Transformer, a massive, highly structured dataset w
 - **Total Records**: 15,234,800 hourly rows.
 - **Storage**: ~5 GB processed Parquet database, partitioned by city.
 
+> **Dataset Sample**: A small sample of the processed satellite indices and merged weather Parquet data is available in the [`dataset sample/`](./dataset%20sample/) directory for reference.
+
 ## 5.3 Detailed Feature Engineering
 
 ### 5.3.1 Meteorological Variables (59 Features)
